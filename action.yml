@@ -1,1 +1,33 @@
 name: Dockerfile CD
+
+inputs:
+  image-name:
+    required: true
+  image-version:
+    required: true
+  registry-username:
+    required: true
+  registry-token:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
+    - run: |
+        docker image build \
+          -t ${{ inputs.image-name }}:latest \
+          -t ${{ inputs.image-name }}:${{ inputs.image-version }} \
+          .
+      shell: bash
+    - run: docker login -u ${{ inputs.registry-username }} -p ${{ inputs.registry-token }}
+      shell: bash
+    - run: docker image push -a ${{ inputs.image-name }}
+      shell: bash
+    - uses: peter-evans/dockerhub-description@v3
+      with:
+        username: ${{ inputs.registry-username }}
+        password: ${{ inputs.registry-token }}
+        repository: ${{ github.repository }}
+      continue-on-error: true
