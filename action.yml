@@ -1,4 +1,4 @@
-name: Dockerfile CD
+name: '@actalog/dockerfile-cd'
 
 inputs:
   image-name:
