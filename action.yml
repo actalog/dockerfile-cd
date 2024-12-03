@@ -1,4 +1,9 @@
 name: '@actalog/dockerfile-cd'
+description: Publishes a Docker image to a Docker registry
+author: Gabriel Rufino <contato@gabrielrufino.com>
+branding:
+  icon: package
+  color: blue
 
 inputs:
   image-name:
