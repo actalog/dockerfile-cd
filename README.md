@@ -1,4 +1,6 @@
-# Dockerfile CD
+# @actalog/dockerfile-cd
+
+[![CD](https://github.com/actalog/dockerfile-cd/actions/workflows/cd.yml/badge.svg)](https://github.com/actalog/dockerfile-cd/actions/workflows/cd.yml)
 
 ```yml
 name: CD
